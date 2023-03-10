@@ -1,0 +1,18 @@
+{
+  "name": "ioex",
+  "version": "1.0.0",
+  "description": "A Custom Node FOR I/O Expander Selector",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "IOEX"
+  ],
+  "author": "",
+  "license": "ISC",
+  "node-red": {
+    "nodes":{
+      "ioex": "ioex.js"
+    }
+  }
+}

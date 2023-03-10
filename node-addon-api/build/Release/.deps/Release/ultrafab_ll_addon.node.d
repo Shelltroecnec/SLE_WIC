@@ -1,0 +1,1 @@
+cmd_Release/ultrafab_ll_addon.node := ln -f "Release/obj.target/ultrafab_ll_addon.node" "Release/ultrafab_ll_addon.node" 2>/dev/null || (rm -rf "Release/ultrafab_ll_addon.node" && cp -af "Release/obj.target/ultrafab_ll_addon.node" "Release/ultrafab_ll_addon.node")

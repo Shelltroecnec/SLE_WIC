@@ -1,0 +1,54 @@
+<script type="text/javascript">
+    RED.nodes.registerType('motor',{
+        // the category within which the node will be displayed
+        category: 'UltraFabIQ',
+        color: '#6aacf1',
+        defaults: {
+            // input fields with default values and validators
+            name: {value:""},
+            motorNo: {value:"", required:true},
+            direction: {value:"", required:true}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "font-awesome/fa-cog",
+        label: function() {
+            return this.name||"motor";
+        }
+    });
+</script>
+<!-- ===== Form for Node Appearence and getting Inputs====== -->
+<script type="text/html" data-template-name="motor">
+    <div class="form-row">
+        <!-- node-input-'*' is the form name from input that will be called in js file -->
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-motorNo"><i class="fa fa-tasks"></i> Select Motor</label>
+        <select id="node-input-motorNo" style="width:120px;">
+            <option value="1">Motor 1</option>
+            <option value="2">Motor 2</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-direction"><i class="fa fa-tasks"></i> Select Motor Direction</label>
+        <select id="node-input-direction" style="width:170px;">
+            <option value="0">Clockwise</option>
+            <option value="1">Counter-Clockwise</option>
+            <option value="2">Stop</option>
+        </select>
+    </div>
+</script>
+<!-- =====Description Of Node In info Box======= -->
+<script type="text/html" data-help-name="motor">
+    <p>This Node is used to set Motor Direction.</p>
+    <h1>Details</h1>
+    <p>When a trigger arrives at this node, it will set the motor direction for the selected motor based on users input</p>
+    <h1>Inputs</h1><hr>
+    <p><b>Select Motor:</b> The User can select either Motor-1 or Motor-2.</p>
+    <p><b>Direction:</b> The User can select the direction to be set for the motor selected. There are 3 options, 1-Clockwise, 2-Counter-Clockwise, 3-Motor Off.</p>
+    <h1>Output</h1><hr>
+    <p>The Output from this node is in form of <i style="font-weight: 700;">msg.payload</i> and returns an object with the set direction for the motor selected by the user.</p>
+</script>
+  

@@ -1,0 +1,63 @@
+<script type="text/javascript">
+    RED.nodes.registerType('rtd',{
+        // the category within which the node will be displayed
+        category: 'UltraFabIQ',
+        color: '#6aacf1',
+        defaults: {
+            // input fields with default values and validators
+            name: {value:""},
+            channelNo: {value:"", required:true},
+            sampleCount: {
+                value:"", required:true,
+                validate: function(v){
+                    if ((v < 0) || (v > 100))
+                    {
+                        return false;
+                    }
+                    else{
+                        return true;
+                    }
+                }
+        }
+        },
+        inputs:1,
+        outputs:1,
+        icon: "font-awesome/fa-cog",
+        label: function() {
+            return this.name||"rtd";
+        }
+    });
+</script>
+<!-- ===== Form for Node Appearence and getting Inputs====== -->
+<script type="text/html" data-template-name="rtd">
+    <div class="form-row">
+        <!-- node-input-'*' is the form name from input that will be called in js file -->
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-channelNo"><i class="fa fa-tasks"></i> Select Channel Number</label>
+        <select id="node-input-channelNo" style="width:120px;">
+            <option value="0">Dont Care</option>
+            <option value="1">Channel 1</option>
+            <option value="2">Channel 2</option>
+            <option value="3">Channel 3</option>
+            <option value="4">Channel 4</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-sampleCount"><i class="fa fa-tag"></i> Enter Sample Count</label>
+        <input type="number" id="node-input-sampleCount" placeholder="0 - 100" max="100" min="0" style="width:120px;">
+    </div>
+</script>
+<!-- =====Description Of Node In info Box======= -->
+<script type="text/html" data-help-name="rtd">
+    <p>This Node is used for reading RTD Data.</p>
+    <h1>Details</h1>
+    <p>When a trigger arrives at this node, it will read the RTD data for the selected sensor.</p>
+    <h1>Inputs</h1><hr>
+    <p><b>Channel Number:</b> The User can select a channel number between 0 to 4 on which data is to be read.</p>
+    <p><b>Sample Count:</b> The User can enter the number of samples to be read and averaged. This Number Can Be between 0-100. </p>
+    <h1>Output</h1><hr>
+    <p>The Output from this node is in form of <i style="font-weight: 700;">msg.payload</i> and returns an object with Sensor Data. This Data will be dependent on the type of sensor selected.</p>
+</script>

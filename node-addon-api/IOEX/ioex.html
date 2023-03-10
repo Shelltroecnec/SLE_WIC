@@ -1,0 +1,87 @@
+<script type="text/javascript">
+    RED.nodes.registerType('ioex',{
+        // the category within which the node will be displayed
+        category: 'UltraFabIQ',
+        color: '#6aacf1',
+        defaults: {
+            // input fields with default values and validators
+            name: {value:""},
+            ioExpanderSelector: {value:"", required:true},
+            port: {value:"", required:true},
+            pin: {value:"", required:true},
+            direction: {value:"", required:true},
+            value: {value:"", required:true}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "font-awesome/fa-cog",
+        label: function() {
+            return this.name||"ioex";
+        }
+    });
+</script>
+<!-- ===== Form for Node Appearence and getting Inputs====== -->
+<script type="text/html" data-template-name="ioex">
+    <div class="form-row">
+        <!-- node-input-'*' is the form name from input that will be called in js file -->
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-ioExpanderSelector"><i class="fa fa-tasks"></i> Select I/O Expander Selector</label>
+        <select id="node-input-ioExpanderSelector" style="width:150px;">
+            <option value="0">IOEX - 0</option>
+            <option value="1">IOEX - 1</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-port"><i class="fa fa-tasks"></i> Select Port</label>
+        <select id="node-input-port" style="width:150px;">
+            <option value="0">Port 0</option>
+            <option value="1">Port 1</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-pin"><i class="fa fa-tasks"></i> Select Pin Number</label>
+        <select id="node-input-pin" style="width:150px;">
+            <option value="0">Pin 0</option>
+            <option value="1">Pin 1</option>
+            <option value="2">Pin 2</option>
+            <option value="3">Pin 3</option>
+            <option value="4">Pin 4</option>
+            <option value="5">Pin 5</option>
+            <option value="6">Pin 6</option>
+            <option value="7">Pin 7</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-direction"><i class="fa fa-tasks"></i> Select Direction</label>
+        <select id="node-input-direction" style="width:150px;">
+            <option value="in">IN</option>
+            <option value="out">OUT</option>
+            <option value="read">READ</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-value"><i class="fa fa-tasks"></i> Select Value</label>
+        <select id="node-input-value" style="width:150px;">
+            <option value="0">LOW</option>
+            <option value="1">HIGH</option>
+        </select>
+    </div>
+</script>
+<!-- =====Description Of Node In info Box======= -->
+<script type="text/html" data-help-name="ioex">
+    <p>IO Expander Selector Node is used to provide additional GPIO's.</p>
+    <h2>Details</h2>
+    <p>When triggered, The Node will Read/Write GPIO on the selected IO Expander Line based on the inputs provided by the user.</p>
+    <h1>Inputs</h1><hr>
+    <p><b>IO Expander :</b> The User can select a IO Expander number of either 0 or 1.</p>
+    <p><b>Port:</b> The User can select a Port-0 or Port-1.</p>
+    <p><b>Pin:</b> The User can select the Pin number between 0 to 7.</p>
+    <p><b>Direction:</b> The user can specify the mode in which the GPIO is read, It can be Read in Input Mode, Output Mode or Read Mode where GPIO is read without setting/changing direction.</p>
+    <p><b>Value:</b>The user can specify the value as high or low by selecting either 0 for low or 1 for high.</p>
+    <h1>Output</h1><hr>
+    <p>The Output from this node is in form of <i style="font-weight: 700;">msg.payload</i> and returns an object displaying the selected GPIO state as High or Low</p>
+</script>
+  

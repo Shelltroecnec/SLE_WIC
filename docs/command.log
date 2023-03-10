@@ -1,0 +1,51 @@
+#/bin/bash
+Dear Suresh sir,
+As discussed over call, please find the attached below documents for filing my ITR1. Form16: from April 2020 to November 20202. Kotak Bank account statement, salary account (from April 2020 to November 2020)3. PNB account statement, salary account (from December 2020 to March 2021)
+Personal details:Name: Fakhruddin Yusuf KhanPAN/User name: DCDPK9738RPassword: AM@033790
+
+hwclock --set --date "2021-12-23"
+
+mount /dev/mmcblk1p1 /mnt
+
+/etc/init.d/docker.init restart
+echo "Starting the docker-node-red image"
+# docker run -d -p 1880:1880 --add-host="localhost:192.168.2.1" -v /mnt/docker/node_red_data:/data --name mynodered nodered/node-red /bin/bash
+# docker run -d -p 1880:1880 -v /mnt/docker/node_red_data:/data --name mynodered nodered/node-red /bin/bash
+
+#for giving access to container
+docker run --privileged -d -p 1880:1880 --group-add dialout --user=root --restart=always -v /mnt/sdcard/docker/node_red_data:/data --name mynodered nodered/node-red /bin/bash
+
+
+
+# --device=/dev/spidev0.0 --device=/dev/spidev0.1 --device=/dev/serial0
+
+# docker run --privileged -d -p 1880:1880 -v /mnt/docker/node_red_data:/data --group-add dialout --user=root --restart=always -e NODE_OPTIONS="--max_old_space_size=256" --log-opt max-file=2 --log-opt max-size=2k  --name mynodered nodered/node-red
+
+
+# + Stop the docker with following command:
+#  - $ /etc/init.d/docker.init stop
+
+# + Create the file /etc/docker/daemon.json with following contents:
+# {
+#    "data-root": "/mnt/docker"
+# }
+
+# + Mount the uSD partition on /mnt. The partition should have around 1GB of space:
+#   - $ mount /dev/mmcblk1p1 /mnt
+
+# + Set the date to the current date:
+#  - $ hwclock --set --date "2021-12-02"
+#  - $ hwclock -s
+# Check if the date is updated with 'date' command.
+
+# + Start the docker:
+#   - /etc/init.d/docker.init start
+
+# + Note down the id address of the board with ifconfig
+
+# + Now, run the node red following the instructions at:
+# https://nodered.org/docs/getting-started/docker
+#  - $ docker run -it -p 1880:1880 -v node_red_data:/data --name mynodered nodered/node-red
+
+# This should download the node red related files. The node red can be accessed by connecting to http://<board ip>:1880
+

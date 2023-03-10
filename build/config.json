@@ -1,0 +1,4 @@
+{
+    "modbus_select_pin":1,
+    "modbus_delay_ms":100
+}

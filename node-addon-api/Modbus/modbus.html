@@ -1,0 +1,67 @@
+<script type="text/javascript">
+    RED.nodes.registerType('modbus',{
+        // the category within which the node will be displayed
+        category: 'UltraFabIQ',
+        color: '#6aacf1',
+        defaults: {
+            // input fields with default values and validators
+            name: {value:""},
+            channelNo: {value:"", required:true},
+            baudrate: {value:"", required:true,
+                    validate: function(v){
+                        if (v < 0)
+                        {
+                            return false;
+                        }
+                        else{
+                         return true;
+                        }
+                        }},
+            modbusFrame: {value:"", required:true}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "font-awesome/fa-cog",
+        label: function() {
+            return this.name||"modbus";
+        }
+    });
+</script>
+<!-- ===== Form for Node Appearence and getting Inputs====== -->
+<script type="text/html" data-template-name="modbus">
+    <div class="form-row">
+        <!-- node-input-'*' is the form name from input that will be called in js file -->
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-channelNo"><i class="fa fa-tasks"></i> Select Channel Number</label>
+        <select id="node-input-channelNo" style="width:200px;">
+            <option value="1">Serial Channel 1</option>
+            <option value="2">Serial Channel 2</option>
+            <option value="3">Serial Channel 3</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-baudrate"><i class="fa fa-tag"></i> Enter Baudrate</label>
+        <input type="number" id="node-input-baudrate" min="0">
+    </div>
+    <div class="form-row">
+        <label for="node-input-modbusFrame"><i class="fa fa-tag"></i> Enter Modbus Frame</label>
+        <input type="text" id="node-input-modbusFrame" placeholder="Modbus Frame">
+    </div>
+</script>
+<!-- =====Description Of Node In info Box======= -->
+<script type="text/html" data-help-name="modbus">
+    <p>This Node is used for Modbus Communication.</p>
+    <h2>Details</h2>
+    <p>When triggered this node will initiate communication with Modbus via RS485 to return its Frame.</p>
+    <h1>Inputs</h1><hr>
+    <p><b>Multiplexer Channel:</b> The User can select a multiplexer channel with number 1, 2 or 3.</p>
+    <p><b>Baudrate Configuration:</b> The User can enter Baudrate configuration in BPS.</p>
+    <p><b>Modbus Frame:</b> The User can enter Modbus Frame in Hex format. </p>
+    <p style="color:lightcoral; font-size: 12px; "><i>Note: there is no need of entering 0x at the begining of the Frame.</i></p>
+    <h1>Output</h1><hr>
+    <p>The Output from this node is in form of <i style="font-weight: 700;">msg.payload</i> and returns an object with a Modbus Frame based on user inputs.</p>
+</script>
+  

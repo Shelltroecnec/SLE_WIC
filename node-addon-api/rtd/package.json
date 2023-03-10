@@ -1,0 +1,18 @@
+{
+  "name": "rtd",
+  "version": "1.0.0",
+  "description": "A Custom Node To Read Sensor Output",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "RTD"
+  ],
+  "author": "",
+  "license": "ISC",
+  "node-red": {
+    "nodes":{
+      "rtd": "rtd.js"
+    }
+  }
+}

@@ -1,0 +1,140 @@
+<script type="text/javascript">
+    RED.nodes.registerType('analog-in-read',{
+        // the category within which the node will be displayed
+        category: 'UltraFabIQ',
+        color: '#6aacf1',
+        defaults: {
+            // input fields with default values and validators
+            name: {value:""},
+            channelNo: {value:"", required:true},
+            sensorType: {value:"", required:true},
+            power: {value:"", required:true},
+            sampleNo: {value:"", required:true,
+                    validate: function(v){
+                        if ((v < 0) || (v > 10000))
+                        {
+                            return false;
+                        }
+                        else{
+                         return true;
+                        }
+                        }},
+            sampleFreq: {value:"", required:true,
+                        validate: function(v){
+                             if ((v < 0) || (v > 1000))
+                            {
+                              return false;
+                            }
+                            else{
+                                return true;
+                            }
+                        }},
+            // rawSample: {value:"", required:true},
+            settlingTime: {value:"", required:true,
+                        validate: function(v){
+                                if ((v < 0))
+                                {
+                                    return false;
+                                }
+                                else{
+                                    return true;
+                                }
+                            }},
+            bias: {value:""},
+            vref: {value:""}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "font-awesome/fa-cog",
+        label: function() {
+            return this.name||"analog-in-read";
+        }
+    });
+</script>
+<!-- ===== Form for Node Appearence and getting Inputs====== -->
+<script type="text/html" data-template-name="analog-in-read">
+    <div class="form-row">
+        <!-- node-input-'*' is the form name from input that will be called in js file -->
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-channelNo"><i class="fa fa-tasks"></i> Select Channel Number</label>
+        <select id="node-input-channelNo" style="width:250px;">
+            <option value="0">No Selected Channel</option>
+            <option value="1">Channel 1</option>
+            <option value="2">Channel 2</option>
+            <option value="3">Channel 3</option>
+            <option value="4">Channel 4</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-sensorType"><i class="fa fa-tasks"></i> Select Sensor Type</label>
+        <select id="node-input-sensorType" style="width:250px;">
+            <option value="0">4-20mA Sensor</option>
+            <option value="1">0-10V Sensor</option>
+            <option value="2">IEPE Sensor</option>
+            <option value="3">MSUPLY_VMON Sensor</option>
+            <option value="4">TDC Analog Sensor</option>
+            <option value="5">LOAD_CELL Sensor</option>
+            <option value="6">MOTOR 2 Current Sensor</option>
+            <option value="7">MOTOR 1 Current Sensor </option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-power"><i class="fa fa-tasks"></i> Select Power Supply</label>
+        <select id="node-input-power" style="width:250px;">
+            <option value="0">No Power Supply</option>
+            <option value="1">24V-40mA Power Supply</option>
+            <option value="2">12V Power Supply</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-sampleNo"><i class="fa fa-tag"></i> Enter Number Of Samples</label>
+        <input type="number" id="node-input-sampleNo" placeholder="0 - 10000" max="10000" min="0">
+    </div>
+    <div class="form-row">
+        <label for="node-input-sampleFreq"><i class="fa fa-tag"></i> Enter Sampling Frequency</label>
+        <input type="number" id="node-input-sampleFreq" placeholder="0 - 1000" max="1000" min="0">
+    </div>
+    <!-- <div class="form-row">
+        <label for="node-input-rawSample"><i class="fa fa-tasks"></i> Raw Sample Display</label>
+        <select id="node-input-rawSample" style="width:250px;">
+            <option value="0">Do Not Show Raw Sample</option>
+            <option value="1">Show Raw Sample</option>
+        </select> -->
+    </div>
+    <div class="form-row">
+        <label for="node-input-settlingTime"><i class="fa fa-tag"></i> Enter Settling Time In Milliseconds</label>
+        <input type="number" id="node-input-settlingTime" min="0">
+    </div>
+    <div class="form-row">
+        <label for="node-input-bias"><i class="fa fa-tasks"></i> Select Bias</label>
+        <select id="node-input-bias" style="width:250px;">
+            <option value=""></option>
+            <option value="1">AC Bias</option>
+            <option value="2">DC Bias</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-vref"><i class="fa fa-tag"></i> Enter Vref</label>
+        <input type="number" id="node-input-vref">
+    </div>
+</script>
+<!-- =====Description Of Node In info Box======= -->
+<script type="text/html" data-help-name="analog-in-read">
+    <p>Reads the status of user selected sensor.</p>
+    <h1>Details</h1>
+    <p>When a trigger arrives at this node, it will evaluate the state of sensor selected by the user using the user inputs</p>
+    <h1>Inputs</h1><hr>
+    <p><b>Channel Number:</b> The User can select a channel number between 0 to 4</p>
+    <p><b>Sensor:</b> The User can select between 8 available sensors that are connected to ADC MUX namely: '4-20mA Sensor', '0-10V Sensor', 'IEPE Sensor', 'MSUPLY_VMON Sensor', 'TDC Analog Sensor', 'LOAD_CELL Sensor', 'MOTOR1 Sensor', 'MOTOR2 Sensor'.</p>
+    <p><b>Power Supply:</b> The User can select the power supply as 24V 40mA supply, 12V supply, or No power supply</p>
+    <p><b>Number of Samples:</b> The user can enter the number of sample readings to be taken from the sensor, this number must not exceed 10000</p>
+    <p><b>Sampling Frequency:</b>The user can enter the frequency at which readings will be taken from the sensor. this number cannot exceed 1000. this value can be set at 0 for Default.</p>
+    <p><b>Settling Time:</b>The User can enter the delay between reading sample readings in milliseconds.</p>
+    <p><b>Bias Selection and Reference Voltage:</b> These inputs are only applicable for 'IEPE Sensor'. The Bias can be set as AC bias or DC bias.</p>
+    <p style="color:lightcoral; font-size: 12px; "><i>Note: 'LOAD_CELL Sensor','MOTOR2 Sensor' and 'MOTOR1 Sensor' are independent of channel number </i></p>
+    <h1>Output</h1><hr>
+    <p>The Output from this node is in form of <i style="font-weight: 700;">msg.payload</i> and returns an object with 4 key value pairs, these are Min, Max, Average and Delta</p>
+</script>

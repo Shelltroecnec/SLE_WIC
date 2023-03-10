@@ -1,0 +1,6 @@
+make.exe --dry-run --always-make --keep-going --print-directory
+make: Entering directory 'd:/Workspace/SmartIo/CLI_v2.0.13/CLI'
+make: Leaving directory 'd:/Workspace/SmartIo/CLI_v2.0.13/CLI'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+

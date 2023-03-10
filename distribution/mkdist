@@ -1,0 +1,54 @@
+here=`pwd`
+
+work_dir=/home/root/ultrafab
+
+
+# gitver=$(git describe --tags)
+# dirty=$(git describe --tags --dirty)
+
+# if [[ $dirty == *"dirty"* ]]; then
+# 	m="M"
+# fi
+
+# if [ ${#gitver} -gt 10 ]; then
+# 	ver=v${gitver:0:${#gitver}-9}$m # hash is always 7 digits i.e -gXXXXXXX
+# else
+# 	ver=v${gitver}$m 
+# fi
+
+ver="1.0.2-mqtt"
+
+rm -rf staging
+mkdir staging
+cp -rf home staging/
+chmod +x etc/init.d/ulad_daemon.init
+cp -rf etc staging/
+mkdir -p staging/etc/rc5.d
+
+
+
+ln -sf ../init.d/ulad_daemon.init staging/etc/rc5.d/S99ulad_daemon
+
+
+cp ../build/ulad_daemon staging/$work_dir/ulad_daemon_$ver
+cd staging/$work_dir/
+chmod +x ulad_daemon.sh
+chmod +x ulad_daemon_$ver
+ln -sf ulad_daemon_$ver ulad_daemon
+
+cd "$here"
+mkdir -p dist
+cd staging
+TAR=$(which gnutar)
+if [ "$TAR" == "" ]; then
+	TAR=tar
+fi
+
+$TAR cvzf ../dist/ulad_app_update_$ver.tgz *
+
+# cd ../dist
+# mv ulad_app_update_$ver.tgz uldaemon.tgz
+# md5sum uldaemon.tgz > uldaemon.tgz.md5
+
+# $TAR cvzf update_gtw_$ver.tgz uldaemon.tgz uldaemon.tgz.md5
+# rm uldaemon.tgz uldaemon.tgz.md5

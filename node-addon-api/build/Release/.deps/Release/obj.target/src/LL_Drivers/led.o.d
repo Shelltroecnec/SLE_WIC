@@ -1,0 +1,5 @@
+cmd_Release/obj.target/ultrafab_ll_addon/../src/LL_Drivers/led.o := cc -o Release/obj.target/ultrafab_ll_addon/../src/LL_Drivers/led.o ../../src/LL_Drivers/led.c '-DNODE_GYP_MODULE_NAME=ultrafab_ll_addon' '-DUSING_UV_SHARED=1' '-DUSING_V8_SHARED=1' '-DV8_DEPRECATION_WARNINGS=1' '-D_LARGEFILE_SOURCE' '-D_FILE_OFFSET_BITS=64' '-DNAPI_DISABLE_CPP_EXCEPTIONS' '-DBUILDING_NODE_EXTENSION' -I/usr/include/nodejs/include/node -I/usr/include/nodejs/src -I/usr/include/nodejs/deps/openssl/config -I/usr/include/nodejs/deps/openssl/openssl/include -I/usr/include/nodejs/deps/uv/include -I/usr/include/nodejs/deps/zlib -I/usr/include/nodejs/deps/v8/include -I/mnt/d/Workspace/SmartIo/CLI_v2.0.13/CLI/node-addon-api/node_modules/node-addon-api -I../../inc -I../../inc/mqtt/inc -I../../inc/LL_Drivers  -fPIC -pthread -Wall -Wextra -Wno-unused-parameter -m64 -fPIC -O3 -fno-omit-frame-pointer  -MMD -MF ./Release/.deps/Release/obj.target/ultrafab_ll_addon/../src/LL_Drivers/led.o.d.raw   -c
+Release/obj.target/ultrafab_ll_addon/../src/LL_Drivers/led.o: \
+ ../../src/LL_Drivers/led.c ../../inc/LL_Drivers/led.h
+../../src/LL_Drivers/led.c:
+../../inc/LL_Drivers/led.h:

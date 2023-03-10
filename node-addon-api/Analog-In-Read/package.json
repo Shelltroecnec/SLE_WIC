@@ -1,0 +1,18 @@
+{
+  "name": "analog-in-read",
+  "version": "1.0.0",
+  "description": "A Custom Node To Read The Status Of Selected Sensor",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Analog input"
+  ],
+  "author": "",
+  "license": "ISC",
+  "node-red": {
+    "nodes":{
+      "analog-in-read": "analog-in-read.js"
+    }
+  }
+}

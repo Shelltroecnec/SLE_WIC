@@ -1,0 +1,45 @@
+#!/bin/sh
+
+. /etc/init.d/functions
+
+BINDIR="/home/root/ultrafab"
+BINARY="${BINDIR}/ulad_daemon.sh"
+CONFIG="${BINDIR}/ul_config.json"
+
+case "$1" in
+start)
+        echo "Starting UltraFab low level daemon...." 
+
+        # Start server
+        cd ${BINDIR}
+        ${BINARY} ${OPTIONS} >/dev/null 2>&1 &
+
+        success
+        echo ""
+        ;;
+
+stop)
+        echo "Stopping UltraFab low level daemon...."
+
+        killproc "ulad_daemon"
+        # watchdog -t 30 /dev/watchdog
+
+        if [ $? -eq 0 ]; then
+                success
+        else
+                failure
+        fi
+        echo ""
+        ;;
+
+restart)
+        $0 stop
+        $0 start
+        ;;
+*)
+        echo "Usage: $0 { start | stop | restart }" >&2
+        exit 1
+        ;;
+esac
+
+exit 0
